@@ -13,6 +13,7 @@ const config = {
   state: {
     preload,
     create,
+    update
   },  
   transparent: false,
   antialias: false,
@@ -35,6 +36,8 @@ function preload() {
 }
 
 var block1;
+var bigBlock;
+var cursors;
 
 function create() {
   console.log(game)
@@ -49,11 +52,42 @@ function create() {
 
   block1 = game.add.sprite(40, 10, colorArea);
 
- 
+  bigBlock = game.add.tileSprite(10, 450, 200, 100, colorArea);
 
-  game.physics.enable([block1], Phaser.Physics.ARCADE);
+  game.physics.enable([block1,bigBlock], Phaser.Physics.ARCADE);
 
   block1.body.collideWorldBounds = true;
   block1.body.bounce.y = 0.5;
+
+  bigBlock.body.collideWorldBounds = true;
+  bigBlock.body.immovable = true;
+  bigBlock.body.allowGravity = false;
+
+  cursors = game.input.keyboard.createCursorKeys();
   
+}
+function update () {
+
+  game.physics.arcade.collide(block1, bigBlock);
+
+  if (cursors.left.isDown)
+  {
+      bigBlock.body.x -= 8;
+     
+  }
+  else if (cursors.right.isDown)
+  {
+      bigBlock.body.x += 8;
+     
+  }
+
+  if (cursors.up.isDown)
+  {
+      bigBlock.body.y += 8;
+  }
+  else if (cursors.down.isDown)
+  {
+      bigBlock.body.y -= 8;
+  }
+
 }
