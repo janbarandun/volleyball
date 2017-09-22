@@ -63,6 +63,9 @@ const config = {
     port: 8080,
     stats: 'minimal',
   },
+  node: {
+    fs: 'empty'
+  }
 };
 
 module.exports = config;

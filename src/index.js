@@ -1,37 +1,59 @@
 import 'pixi';
 import 'p2';
 import 'phaser';
+//import 'require-dir'
 
 import pkg from '../package.json';
 
-// This is the entry point of your game.
+//import * as states from './states';
 
 const config = {
-  width: 800,
-  height: 600,
   renderer: Phaser.AUTO,
   parent: '',
   state: {
     preload,
     create,
-  },
+  },  
   transparent: false,
-  antialias: true,
+  antialias: false,
   physicsConfig: { arcade: true },
 };
 
+// init game
 const game = new Phaser.Game(config);
 
+// auto add states located in folder /states to the game 
+//Object.keys(states).forEach(state => game.state.add(state, states[state]));
+
 function preload() {
-  this.game.load.image('study', 'assets/img/study.png');
+  game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+  game.physics.startSystem(Phaser.Physics.ARCADE);
+  
+  //  Set the world (global) gravity
+  game.physics.arcade.gravity.y = 400;
+
 }
 
-function create() {
-  const { game } = this;
-  const objects = [
-    game.add.text(game.world.centerX, game.world.centerY * 0.8, `Welcome to Phaser ${pkg.dependencies.phaser.substr(1)}`, { font: "bold 19px Arial", fill: "#fff" }),
-    game.add.sprite(game.world.centerX, game.world.centerY * 1.2, 'study')
-  ];
+var block1;
 
-  objects.forEach(obj => obj.anchor.setTo(0.5, 0.5));
+function create() {
+  console.log(game)
+
+  var colorArea = this.game.add.bitmapData(30,30);
+	
+  // draw to the canvas context like normal
+  colorArea.ctx.beginPath();
+  colorArea.ctx.rect(0,0,30,30);
+  colorArea.ctx.fillStyle = '#ffc600';
+  colorArea.ctx.fill();
+
+  block1 = game.add.sprite(40, 10, colorArea);
+
+ 
+
+  game.physics.enable([block1], Phaser.Physics.ARCADE);
+
+  block1.body.collideWorldBounds = true;
+  block1.body.bounce.y = 0.5;
+  
 }
