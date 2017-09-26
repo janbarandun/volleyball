@@ -18,10 +18,10 @@ const config = {
 };
 
 // init game
-game = new Phaser.Game(config);
+this.game = new Phaser.Game(config);
 
 // load states located in folder /states to the game 
 // if new state module added, edit file /states/index.js
-Object.keys(states).forEach(state => game.state.add(state, states[state]));
+Object.keys(states).forEach(state => this.game.state.add(state, states[state]));
 
-game.state.start('Boot');
+this.game.state.start('Boot');

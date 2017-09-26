@@ -10,18 +10,18 @@
 export default class Boot extends Phaser.State {
     
     preload() {
-        game.stage.backgroundColor = '#000';
+        this.game.stage.backgroundColor = '#000';
 
     }
 
     create() {
         
         // prepare global vars
-        game.global = {};
+        this.game.global = {};
         
         //game.global.levelConfig = new LevelConfig(this);
 
-        game.state.start('Preload');
+        this.game.state.start('Preload');
     }
 
 }

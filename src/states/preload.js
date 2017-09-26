@@ -13,7 +13,7 @@ export default class Preload extends Phaser.State {
 
     create() {
 
-        game.state.start('Game1');
+        this.game.state.start('Game1');
         
     }
 
