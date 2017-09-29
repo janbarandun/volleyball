@@ -1,4 +1,5 @@
 //import {default as LevelConfig} from '../config/levelconfig';
+import {default as Player} from './game2.player.js';
 
 export default class Game2 extends Phaser.State {
     
@@ -13,6 +14,7 @@ export default class Game2 extends Phaser.State {
         this.game.load.image('net', 'assets/img/net-1.png');
         this.game.load.image('ball', 'assets/img/ball.png');
         
+        this.player1 = new Player(10,10,50,150);
 
     }
 
@@ -34,6 +36,9 @@ export default class Game2 extends Phaser.State {
         this.ball.inputEnabled = true;
 
         this.ball.events.onInputUp.add(this.startBall, this);
+
+        console.log(this.player1.position());
+        console.log(this.player1.dimensions());
 
     }
 
