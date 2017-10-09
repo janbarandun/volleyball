@@ -1,27 +1,23 @@
 import 'pixi';
 import 'p2';
 import 'phaser';
-//import 'require-dir'
-
 import pkg from '../package.json';
 
 import * as states from './states';
 
-const config = {
-  width:1920,
-  height: 1080,
-  renderer: Phaser.AUTO,
-  parent: '',
-  transparent: false,
-  antialias: false,
-  physicsConfig: { arcade: true },
-};
+class Game extends Phaser.Game {
+  
+     constructor() {
+  
+         //super(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.AUTO);
 
-// init game
-this.game = new Phaser.Game(config);
-
-// load states located in folder /states to the game 
-// if new state module added, edit file /states/index.js
-Object.keys(states).forEach(state => this.game.state.add(state, states[state]));
-
-this.game.state.start('Boot');
+         super(1920, 1080, Phaser.AUTO)
+  
+         Object.keys(states).forEach(state => this.state.add(state, states[state]));
+  
+         this.state.start('Boot');
+     }
+  
+ }
+  
+ new Game();
