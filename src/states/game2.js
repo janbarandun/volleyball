@@ -57,6 +57,8 @@ export default class Game2 extends Phaser.State {
         
         this.game.physics.arcade.collide(this.net, this.ball);
         this.game.physics.arcade.collide(this.playerGroup, this.ball);
+
+        // collide net and player
     
 
       
