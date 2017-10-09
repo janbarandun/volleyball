@@ -1,34 +1,41 @@
 //import {default as LevelConfig} from '../config/levelconfig';
-import {default as Player} from './game2.player.js';
+import {default as Player} from '../modules/game2.player.js';
 
 export default class Game2 extends Phaser.State {
     
     preload() {
+
+        
+
+    }
+
+
+    create() {
+
+        this.playerGroup = this.game.add.group();
+
+        this.player1 = new Player(this.game,250,1000,this.playerGroup);
+        this.player2 = new Player(this.game,1600,1000,this.playerGroup);
 
         this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         //  Set the world (global) gravity
         this.game.physics.arcade.gravity.y = 400;
-
-        this.game.load.image('net', 'assets/img/net-1.png');
-        this.game.load.image('ball', 'assets/img/ball.png');
-        
-        this.player1 = new Player(10,10,50,150);
-
-    }
-
-
-    create() {
         
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         this.net = this.game.add.sprite(910, 450, 'net');
         this.ball = this.game.add.sprite(300, 600, 'ball');
 
-        this.game.physics.enable([this.ball,this.net]);
+
+
+        this.game.physics.enable([this.ball,this.net,this.player1,this.player2]);
 
         this.net.body.immovable = true;
+        this.player1.body.immovable = true;
+        this.player2.body.immovable = true;
+
 
         this.ball.body.bounce.set(0.8);
         this.ball.body.collideWorldBounds = true;
@@ -36,21 +43,18 @@ export default class Game2 extends Phaser.State {
         this.ball.inputEnabled = true;
 
         this.ball.events.onInputUp.add(this.startBall, this);
-
-        console.log(this.player1.position());
-        console.log(this.player1.dimensions());
-
     }
 
     update () {
         
         this.game.physics.arcade.collide(this.net, this.ball);
+        this.game.physics.arcade.collide(this.playerGroup, this.ball);
 
       
     }
 
     startBall () {
-        this.ball.body.velocity.setTo(500,-600)
+        this.ball.body.velocity.setTo(500,-700)
         this.ball.body.gravity.y = 400;
     }
 
