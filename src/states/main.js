@@ -1,6 +1,6 @@
 //import {default as LevelConfig} from '../config/levelconfig';
-import {default as Player} from '../modules/game2.player.js';
-import {default as Enemy} from '../modules/game2.enemy.js';
+import {default as Player} from '../modules/player.js';
+import {default as Enemy} from '../modules/enemy.js';
 
 export default class Game2 extends Phaser.State {
     
@@ -27,7 +27,7 @@ export default class Game2 extends Phaser.State {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         this.net = this.game.add.sprite(910, 450, 'net');
-        this.ball = this.game.add.sprite(300, 600, 'ball');
+        this.ball = this.game.add.sprite(300, 700, 'ball');
 
 
 
