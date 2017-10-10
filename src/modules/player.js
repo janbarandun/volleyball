@@ -13,13 +13,15 @@ export default class Player extends Phaser.Sprite {
 
     update() {
 
+        this.body.velocity.x = 0;
+
         if (this.cursors.left.isDown)
         {
-            this.x -= 10;
+            this.body.velocity.x -= 400;
         }
         else if (this.cursors.right.isDown)
         {
-            this.x += 10;
+            this.body.velocity.x += 400;
         }
     
         if (this.cursors.up.isDown) {
