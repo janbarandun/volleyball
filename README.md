@@ -1,19 +1,18 @@
-# Phaser Starter
+# Volleyball
 
 ![Phaser avatar studying](./public/assets/img/study.png)
 
-Simple starter project to get a Phaser game environment up and running with ease. With Webpack, ES6 transpiling, page reloading and Github page publishing.
+The best volleyball game on the planet!
 
 ## Install
 - Get the files
-  - `git clone https://github.com/oliverbenns/phaser-starter.git`
-  - **or** download a r [zip/tar.gz](https://github.com/oliverbenns/phaser-starter/releases)
-- `cd phaser-starter`
-- `nvm install`
+  - `git clone https://github.com/janbarandun/volleyball.git`
+  - **or** download a r [zip/tar.gz](https://github.com/janbarandun/volleyball/releases)
+- `cd volleyball`
 - `npm install`
 
 ## Development
-- `npm run develop`
+- `npm run dev`
 - Open `http://localhost:8080`
 
 ## Build
