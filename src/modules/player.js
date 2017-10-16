@@ -7,6 +7,15 @@ export default class Player extends Phaser.Sprite {
 
         playerGroup.add(this);
 
+        game.physics.p2.enable(this,true);
+
+        this.body.clearShapes();
+        this.body.loadPolygon('physicsData', 'player');
+        this.body.gravity.y = 1200;
+        this.body.collideWorldBounds = true;
+        this.body.fixedRotation = true;
+
+
         this.cursors = game.input.keyboard.createCursorKeys();
        
     }
@@ -16,6 +25,7 @@ export default class Player extends Phaser.Sprite {
         this.body.velocity.x = 0;
         
         let cur = this.cursors;
+
         if (cur.left.isDown) {
             this.body.velocity.x = -350;
             //player.animations.play('left');
@@ -34,6 +44,7 @@ export default class Player extends Phaser.Sprite {
         }
     }
 
+    //from http://phaser.io/examples/v2/p2-physics/tilemap-gravity
     touchingDown(someone) {
         var yAxis = p2.vec2.fromValues(0, 1);
         var result = false;

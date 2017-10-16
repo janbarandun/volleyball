@@ -14,41 +14,28 @@ export default class Main extends Phaser.State {
 
     create() {
 
+        this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.game.physics.startSystem(Phaser.Physics.P2JS);
+
         this.playerGroup = this.game.add.group();
 
         this.player1 = new Player(this.game,250,1000,this.playerGroup);
         this.player2 = new Enemy(this.game,1600,1000,this.playerGroup);
 
-        this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        this.game.physics.startSystem(Phaser.Physics.P2JS);
-
+        
         //  Set the world (global) gravity
         this.game.physics.p2.gravity.y = 2000;
 
         this.net = this.game.add.sprite(910, 700, 'net');
         this.ball = this.game.add.sprite(300, 800, 'ball');
 
-
-
-        this.game.physics.p2.enable([this.ball,this.net,this.player1,this.player2],true);
-
-        //this.net.body.immovable = true;
-
-        this.player1.body.clearShapes();
-        this.player1.body.loadPolygon('physicsData', 'player');
-
-        this.player2.body.clearShapes();
-        this.player2.body.loadPolygon('physicsData', 'player');
+        this.game.physics.p2.enable([this.ball,this.net],true);
 
         this.ball.body.clearShapes();
         this.ball.body.loadPolygon('physicsData', 'ball');
 
         this.net.body.static = true;
         //this.player2.body.immovable = true;
-
-        this.player1.body.gravity.y = 1200;
-        this.player1.body.collideWorldBounds = true;
-        this.player1.fixedRotation = true;
 
         var playerMaterial = this.game.physics.p2.createMaterial('playerMaterial', this.player1.body);
         var worldMaterial = this.game.physics.p2.createMaterial('worldMaterial');
@@ -57,7 +44,7 @@ export default class Main extends Phaser.State {
 
 
         this.ball.body.collideWorldBounds = true;
-        
+
         this.ball.inputEnabled = true;
 
         this.ball.events.onInputUp.add(this.startBall, this);
