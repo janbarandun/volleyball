@@ -11,7 +11,9 @@ export default class Player extends Phaser.Sprite {
 
         this.body.clearShapes();
         this.body.loadPolygon('physicsData', 'player');
-        this.body.gravity.y = 1200;
+        this.body.mass = 15;
+
+        //this.body.gravity.y = 1200;
         this.body.collideWorldBounds = true;
         this.body.fixedRotation = true;
 
@@ -27,11 +29,11 @@ export default class Player extends Phaser.Sprite {
         let cur = this.cursors;
 
         if (cur.left.isDown) {
-            this.body.velocity.x = -350;
+            this.body.velocity.x = -800;
             //player.animations.play('left');
         }
         else if (cur.right.isDown) {
-            this.body.velocity.x = 350;
+            this.body.velocity.x = 800;
             //player.animations.play('right');
         }
         else {
@@ -40,7 +42,7 @@ export default class Player extends Phaser.Sprite {
         }
         //  Allow the player to jump if touching the ground.
         if (cur.up.isDown && this.touchingDown(this)) {
-            this.body.velocity.y = -1200;
+            this.body.velocity.y = -800;
         }
     }
 
